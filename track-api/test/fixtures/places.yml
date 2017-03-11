@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  spotify_id: 1
+  top_left: 
+  top_right: 
+  bottom_right: 
+  bottom_left: 
+
+two:
+  spotify_id: 1
+  top_left: 
+  top_right: 
+  bottom_right: 
+  bottom_left: 
