@@ -1,0 +1,258 @@
+//
+//  PlayerViewController.swift
+//  FacebookHack
+//
+//  Created by Jay Lees on 11/03/2017.
+//  Copyright © 2017 Jay Lees. All rights reserved.
+//
+
+import UIKit
+import AudioToolbox
+import AVFoundation
+import CoreLocation
+
+class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudioStreamingPlaybackDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIGestureRecognizerDelegate {
+
+    var isChangingProgress: Bool = false
+    var userLat = 0.0
+    var userLong = 0.0
+    let locationManager = CLLocationManager()
+    let audioSession = AVAudioSession.sharedInstance()
+    let pickerDataWords = ["5 seconds", "10 seconds", "30 seconds", "1 minute", "5 minutes"]
+    let pickerDataSeconds = [5, 10, 30, 60, 300]
+    
+    @IBOutlet weak var albumArtworkView: UIImageView!
+    @IBOutlet weak var playPauseButton: UIButton!
+    @IBOutlet weak var trackNameText: UILabel!
+    @IBOutlet weak var albumArtistText: UILabel!
+    @IBOutlet weak var userLocationText: UILabel!
+    @IBOutlet weak var refreshTimePicker: UIPickerView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.handleNewSession()
+        albumArtworkView.layer.shadowColor = UIColor.black.cgColor
+        albumArtworkView.layer.shadowOffset = CGSize(width: 3, height: 3)
+        albumArtworkView.layer.shadowOpacity = 0.7
+        albumArtworkView.layer.shadowRadius = 4.0
+        refreshTimePicker.isHidden = true
+        getUsersLocation()
+        self.refreshTimePicker.delegate = self
+        self.refreshTimePicker.dataSource = self
+        Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.getUsersLocation), userInfo: nil, repeats: true)
+    }
+    
+    
+    
+    //MARK: SPOTIFY SESSION
+    func handleNewSession() {
+        do {
+            try SPTAudioStreamingController.sharedInstance().start(withClientId: SPTAuth.defaultInstance().clientID, audioController: nil, allowCaching: true)
+            SPTAudioStreamingController.sharedInstance().delegate = self
+            SPTAudioStreamingController.sharedInstance().playbackDelegate = self
+            SPTAudioStreamingController.sharedInstance().diskCache = SPTDiskCache()
+            SPTAudioStreamingController.sharedInstance().login(withAccessToken: SPTAuth.defaultInstance().session.accessToken!)
+        } catch let error {
+            print("Error whilst trying to log in handle new session: \(error.localizedDescription)")
+            self.closeSession()
+        }
+    }
+    
+    func closeSession() {
+        do {
+            try SPTAudioStreamingController.sharedInstance().stop()
+            SPTAuth.defaultInstance().session = nil
+            _ = self.navigationController!.popViewController(animated: true)
+        } catch let error {
+            print("Error whilst trying to log out \(error)")
+        }
+    }
+    
+    func audioStreaming(_ audioStreaming: SPTAudioStreamingController, didReceiveMessage message: String) {
+        let alert = UIAlertController(title: "Message from Spotify", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: { _ in })
+    }
+    
+    func audioStreaming(_ audioStreaming: SPTAudioStreamingController, didChangePlaybackStatus isPlaying: Bool) {
+        if isPlaying {
+            self.activateAudioSession()
+            playPauseButton.imageView?.image = UIImage(named: "Pause")
+        }
+        else {
+            self.deactivateAudioSession()
+            playPauseButton.imageView?.image = UIImage(named: "Play")
+        }
+    }
+    
+    func audioStreaming(_ audioStreaming: SPTAudioStreamingController, didChange metadata: SPTPlaybackMetadata) {
+        updateUserInterface()
+    }
+    
+    func audioStreamingDidLogout(_ audioStreaming: SPTAudioStreamingController) {
+        self.closeSession()
+    }
+    
+    func audioStreaming(_ audioStreaming: SPTAudioStreamingController, didReceiveError error: Error?) {
+        print("Recieved error: \(error!.localizedDescription)")
+    }
+    
+    func audioStreamingDidLogin(_ audioStreaming: SPTAudioStreamingController) {
+        updateUserInterface()
+        playSong(withURI: "spotify:track:67lnQ6r4oWKZcM8VxSwHq2")
+    }
+    
+    func playSong(withURI: String){
+        SPTAudioStreamingController.sharedInstance().playSpotifyURI(withURI, startingWith: 0, startingWithPosition: 0) { error in
+            if error != nil {
+                print("*** failed to play: \(error)")
+                return
+            }
+        }
+    }
+    
+    func activateAudioSession() {
+        do {
+            try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+            try audioSession.setActive(true)
+            
+        }
+        catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func deactivateAudioSession() {
+        do {
+            try AVAudioSession.sharedInstance().setActive(false)
+        }
+        catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func updateUserInterface(){
+        let auth = SPTAuth.defaultInstance()
+        if SPTAudioStreamingController.sharedInstance().metadata == nil || SPTAudioStreamingController.sharedInstance().metadata.currentTrack == nil {
+            self.albumArtworkView.image = nil
+            return
+        }
+        SPTTrack.track(withURI: URL(string: SPTAudioStreamingController.sharedInstance().metadata.currentTrack!.uri)!, accessToken: auth!.session.accessToken, market: nil) { error, result in
+            self.trackNameText.text = SPTAudioStreamingController.sharedInstance().metadata.currentTrack?.name
+            self.albumArtistText.text = ((SPTAudioStreamingController.sharedInstance().metadata.currentTrack?.artistName)! + " - " + (SPTAudioStreamingController.sharedInstance().metadata.currentTrack?.albumName)!)
+
+            if let track = result as? SPTTrack {
+                let imageURL = track.album.largestCover.imageURL
+                if imageURL == nil {
+                    print("Album \(track.album) doesn't have any images!")
+                    self.albumArtworkView.image = nil
+                    return
+                }
+                DispatchQueue.global().async {
+                    do {
+                        let imageData = try Data(contentsOf: imageURL!, options: [])
+                        let image = UIImage(data: imageData)
+                        // …and back to the main queue to display the image.
+                        DispatchQueue.main.async {
+                            self.albumArtworkView.image = image
+                            if image == nil {
+                                print("Couldn't load cover image with error: \(error)")
+                                return
+                            }
+                        }
+                    } catch let error {
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
+
+    }
+    
+    
+    //MARK: BUTTON INTERFACES
+    @IBAction func playPauseTouched(_ sender: Any) {
+        SPTAudioStreamingController.sharedInstance().setIsPlaying(!SPTAudioStreamingController.sharedInstance().playbackState.isPlaying, callback: nil)
+    }
+    
+    @IBAction func timerButtonTapped(_ sender: Any) {
+        refreshTimePicker.isHidden = false
+        refreshTimePicker.becomeFirstResponder()
+    }
+    
+    //MARK: LOCATION
+    func getUsersLocation(){
+        locationManager.requestAlwaysAuthorization()
+        if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways {
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+            let locValue:CLLocationCoordinate2D = locationManager.location!.coordinate
+            userLat = locValue.latitude
+            userLong = locValue.longitude
+            checkSongForLocation()
+            let geocoder = CLGeocoder()
+            let location = CLLocation(latitude: userLat, longitude: userLong)
+            
+            geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks in
+                let array = placemarks.0
+                if let placemark = array?[0] {
+                    self.userLocationText.text = "Your location: \(placemark.subLocality!), \(placemark.subAdministrativeArea!)"
+                }
+            })
+        } else if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.denied {
+            let alert = UIAlertController(title: "Location Services Disabled", message: "Please enable location services for this app in Settings.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            present(alert, animated: true, completion: nil)
+            alert.addAction(okAction)
+        }
+    }
+    
+    
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // The number of rows of data
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerDataWords.count
+    }
+    
+    // The data to return for the row and component (column) that's being passed in
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerDataWords[row]
+    }
+    
+    //MARK: Change song
+    func checkSongForLocation(){
+        
+        let authTok = UserDefaults.standard.string(forKey: "authToken")
+        triggerGETRequestWith(reqUrl: "https://tracks-api.herokuapp.com/get+song?location=[\(userLong),\(userLat)]", authToken: authTok!, viewController: self)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //playSong(withURI: "spotify:track:4xX7OsX8XTGWJgRxNNIaFT")
+    }
+    
+    //MARK: Gesture Recogniser 
+    
+    @IBAction func userDidTapView(_ sender: Any) {
+        refreshTimePicker.isHidden = true
+    }
+    
+}

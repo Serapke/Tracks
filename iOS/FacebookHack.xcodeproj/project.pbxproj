@@ -1,0 +1,469 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		690F90731E74276C007872FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690F90721E74276C007872FF /* AppDelegate.swift */; };
+		690F90751E74276C007872FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690F90741E74276C007872FF /* ViewController.swift */; };
+		690F90781E74276C007872FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 690F90761E74276C007872FF /* Main.storyboard */; };
+		690F907A1E74276C007872FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 690F90791E74276C007872FF /* Assets.xcassets */; };
+		690F907D1E74276C007872FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 690F907B1E74276C007872FF /* LaunchScreen.storyboard */; };
+		690F90871E742895007872FF /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 690F90841E742895007872FF /* SpotifyAudioPlayback.framework */; };
+		690F90881E742895007872FF /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 690F90851E742895007872FF /* SpotifyAuthentication.framework */; };
+		690F90891E742895007872FF /* SpotifyMetadata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 690F90861E742895007872FF /* SpotifyMetadata.framework */; };
+		690F908C1E742A4B007872FF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 690F908B1E742A4B007872FF /* AVFoundation.framework */; };
+		690F908E1E742A52007872FF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 690F908D1E742A52007872FF /* SystemConfiguration.framework */; };
+		690F90981E74532A007872FF /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690F90971E74532A007872FF /* PlayerViewController.swift */; };
+		69ADE2BF1E747EA7001F823A /* FacebookCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69ADE2BA1E747EA7001F823A /* FacebookCore.framework */; };
+		69ADE2C01E747EA7001F823A /* FacebookLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69ADE2BB1E747EA7001F823A /* FacebookLogin.framework */; };
+		69ADE2C11E747EA7001F823A /* FacebookShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69ADE2BC1E747EA7001F823A /* FacebookShare.framework */; };
+		69ADE2C21E747EA7001F823A /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69ADE2BD1E747EA7001F823A /* FBSDKCoreKit.framework */; };
+		69ADE2C31E747EA7001F823A /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69ADE2BE1E747EA7001F823A /* FBSDKLoginKit.framework */; };
+		69ADE2C51E749089001F823A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69ADE2C41E749089001F823A /* Utils.swift */; };
+		E6A6BF8D8EE6C101AD3CD7C1 /* Pods_FacebookHack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B189EA92CA664D25D8A99626 /* Pods_FacebookHack.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		690F906F1E74276C007872FF /* FacebookHack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookHack.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		690F90721E74276C007872FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		690F90741E74276C007872FF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		690F90771E74276C007872FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		690F90791E74276C007872FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		690F907C1E74276C007872FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		690F907E1E74276C007872FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		690F90841E742895007872FF /* SpotifyAudioPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAudioPlayback.framework; sourceTree = "<group>"; };
+		690F90851E742895007872FF /* SpotifyAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAuthentication.framework; sourceTree = "<group>"; };
+		690F90861E742895007872FF /* SpotifyMetadata.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyMetadata.framework; sourceTree = "<group>"; };
+		690F908B1E742A4B007872FF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		690F908D1E742A52007872FF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		690F90911E74301D007872FF /* FacebookHack-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FacebookHack-Bridging-Header.h"; sourceTree = "<group>"; };
+		690F90971E74532A007872FF /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		69ADE2BA1E747EA7001F823A /* FacebookCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookCore.framework; path = "../../Library/Developer/Xcode/DerivedData/FacebookHack-afikzcpvcwbhemgxtvrxtmcoawae/Build/Products/Debug-iphoneos/FacebookCore/FacebookCore.framework"; sourceTree = "<group>"; };
+		69ADE2BB1E747EA7001F823A /* FacebookLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookLogin.framework; path = "../../Library/Developer/Xcode/DerivedData/FacebookHack-afikzcpvcwbhemgxtvrxtmcoawae/Build/Products/Debug-iphoneos/FacebookLogin/FacebookLogin.framework"; sourceTree = "<group>"; };
+		69ADE2BC1E747EA7001F823A /* FacebookShare.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookShare.framework; path = "../../Library/Developer/Xcode/DerivedData/FacebookHack-afikzcpvcwbhemgxtvrxtmcoawae/Build/Products/Debug-iphoneos/FacebookShare/FacebookShare.framework"; sourceTree = "<group>"; };
+		69ADE2BD1E747EA7001F823A /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../Library/Developer/Xcode/DerivedData/FacebookHack-afikzcpvcwbhemgxtvrxtmcoawae/Build/Products/Debug-iphoneos/FBSDKCoreKit/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		69ADE2BE1E747EA7001F823A /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../Library/Developer/Xcode/DerivedData/FacebookHack-afikzcpvcwbhemgxtvrxtmcoawae/Build/Products/Debug-iphoneos/FBSDKLoginKit/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		69ADE2C41E749089001F823A /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		80C15374250F03F1F5AC8A30 /* Pods-FacebookHack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FacebookHack.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FacebookHack/Pods-FacebookHack.debug.xcconfig"; sourceTree = "<group>"; };
+		B189EA92CA664D25D8A99626 /* Pods_FacebookHack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FacebookHack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7C4634389AD84BA1CCC316F /* Pods-FacebookHack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FacebookHack.release.xcconfig"; path = "Pods/Target Support Files/Pods-FacebookHack/Pods-FacebookHack.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		690F906C1E74276C007872FF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69ADE2BF1E747EA7001F823A /* FacebookCore.framework in Frameworks */,
+				69ADE2C01E747EA7001F823A /* FacebookLogin.framework in Frameworks */,
+				69ADE2C11E747EA7001F823A /* FacebookShare.framework in Frameworks */,
+				69ADE2C21E747EA7001F823A /* FBSDKCoreKit.framework in Frameworks */,
+				69ADE2C31E747EA7001F823A /* FBSDKLoginKit.framework in Frameworks */,
+				690F908E1E742A52007872FF /* SystemConfiguration.framework in Frameworks */,
+				690F908C1E742A4B007872FF /* AVFoundation.framework in Frameworks */,
+				690F90871E742895007872FF /* SpotifyAudioPlayback.framework in Frameworks */,
+				690F90891E742895007872FF /* SpotifyMetadata.framework in Frameworks */,
+				690F90881E742895007872FF /* SpotifyAuthentication.framework in Frameworks */,
+				E6A6BF8D8EE6C101AD3CD7C1 /* Pods_FacebookHack.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0148B7B32636B92C9ADC1FA6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				80C15374250F03F1F5AC8A30 /* Pods-FacebookHack.debug.xcconfig */,
+				D7C4634389AD84BA1CCC316F /* Pods-FacebookHack.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		690F90661E74276C007872FF = {
+			isa = PBXGroup;
+			children = (
+				690F90711E74276C007872FF /* FacebookHack */,
+				690F90701E74276C007872FF /* Products */,
+				690F908A1E742A4B007872FF /* Frameworks */,
+				0148B7B32636B92C9ADC1FA6 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		690F90701E74276C007872FF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				690F906F1E74276C007872FF /* FacebookHack.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		690F90711E74276C007872FF /* FacebookHack */ = {
+			isa = PBXGroup;
+			children = (
+				690F90721E74276C007872FF /* AppDelegate.swift */,
+				690F90741E74276C007872FF /* ViewController.swift */,
+				690F90761E74276C007872FF /* Main.storyboard */,
+				690F90971E74532A007872FF /* PlayerViewController.swift */,
+				69ADE2C41E749089001F823A /* Utils.swift */,
+				690F90911E74301D007872FF /* FacebookHack-Bridging-Header.h */,
+				69B924EB1E74545A00464DC4 /* Other */,
+				69B924EA1E74544D00464DC4 /* Spotify */,
+			);
+			path = FacebookHack;
+			sourceTree = "<group>";
+		};
+		690F908A1E742A4B007872FF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				69ADE2BA1E747EA7001F823A /* FacebookCore.framework */,
+				69ADE2BB1E747EA7001F823A /* FacebookLogin.framework */,
+				69ADE2BC1E747EA7001F823A /* FacebookShare.framework */,
+				69ADE2BD1E747EA7001F823A /* FBSDKCoreKit.framework */,
+				69ADE2BE1E747EA7001F823A /* FBSDKLoginKit.framework */,
+				690F908D1E742A52007872FF /* SystemConfiguration.framework */,
+				690F908B1E742A4B007872FF /* AVFoundation.framework */,
+				B189EA92CA664D25D8A99626 /* Pods_FacebookHack.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		69B924EA1E74544D00464DC4 /* Spotify */ = {
+			isa = PBXGroup;
+			children = (
+				690F90841E742895007872FF /* SpotifyAudioPlayback.framework */,
+				690F90851E742895007872FF /* SpotifyAuthentication.framework */,
+				690F90861E742895007872FF /* SpotifyMetadata.framework */,
+			);
+			name = Spotify;
+			sourceTree = "<group>";
+		};
+		69B924EB1E74545A00464DC4 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				690F90791E74276C007872FF /* Assets.xcassets */,
+				690F907B1E74276C007872FF /* LaunchScreen.storyboard */,
+				690F907E1E74276C007872FF /* Info.plist */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		690F906E1E74276C007872FF /* FacebookHack */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 690F90811E74276D007872FF /* Build configuration list for PBXNativeTarget "FacebookHack" */;
+			buildPhases = (
+				D7B217D9F1D95A4DA5BE3AB6 /* [CP] Check Pods Manifest.lock */,
+				690F906B1E74276C007872FF /* Sources */,
+				690F906C1E74276C007872FF /* Frameworks */,
+				690F906D1E74276C007872FF /* Resources */,
+				9375A9D27668469C0104A5B2 /* [CP] Embed Pods Frameworks */,
+				DE887E002537C1582C121EAB /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FacebookHack;
+			productName = FacebookHack;
+			productReference = 690F906F1E74276C007872FF /* FacebookHack.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		690F90671E74276C007872FF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Jay Lees";
+				TargetAttributes = {
+					690F906E1E74276C007872FF = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 763239R363;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 690F906A1E74276C007872FF /* Build configuration list for PBXProject "FacebookHack" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 690F90661E74276C007872FF;
+			productRefGroup = 690F90701E74276C007872FF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				690F906E1E74276C007872FF /* FacebookHack */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		690F906D1E74276C007872FF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				690F907D1E74276C007872FF /* LaunchScreen.storyboard in Resources */,
+				690F907A1E74276C007872FF /* Assets.xcassets in Resources */,
+				690F90781E74276C007872FF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9375A9D27668469C0104A5B2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FacebookHack/Pods-FacebookHack-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7B217D9F1D95A4DA5BE3AB6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DE887E002537C1582C121EAB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FacebookHack/Pods-FacebookHack-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		690F906B1E74276C007872FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				690F90751E74276C007872FF /* ViewController.swift in Sources */,
+				69ADE2C51E749089001F823A /* Utils.swift in Sources */,
+				690F90981E74532A007872FF /* PlayerViewController.swift in Sources */,
+				690F90731E74276C007872FF /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		690F90761E74276C007872FF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				690F90771E74276C007872FF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		690F907B1E74276C007872FF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				690F907C1E74276C007872FF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		690F907F1E74276C007872FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		690F90801E74276C007872FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		690F90821E74276D007872FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 80C15374250F03F1F5AC8A30 /* Pods-FacebookHack.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 763239R363;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FacebookHack",
+				);
+				INFOPLIST_FILE = FacebookHack/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaylees.FacebookHack;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FacebookHack/FacebookHack-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		690F90831E74276D007872FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7C4634389AD84BA1CCC316F /* Pods-FacebookHack.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 763239R363;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FacebookHack",
+				);
+				INFOPLIST_FILE = FacebookHack/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaylees.FacebookHack;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FacebookHack/FacebookHack-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		690F906A1E74276C007872FF /* Build configuration list for PBXProject "FacebookHack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				690F907F1E74276C007872FF /* Debug */,
+				690F90801E74276C007872FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		690F90811E74276D007872FF /* Build configuration list for PBXNativeTarget "FacebookHack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				690F90821E74276D007872FF /* Debug */,
+				690F90831E74276D007872FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 690F90671E74276C007872FF /* Project object */;
+}

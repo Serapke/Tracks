@@ -1,0 +1,10 @@
+workspace 'FacebookHack'
+target 'FacebookHack' do
+
+  use_frameworks!
+
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'FacebookShare'
+
+end
