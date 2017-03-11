@@ -20,6 +20,7 @@ class ViewController: UIViewController, SPTAudioStreamingDelegate {
     
     override func viewDidLoad(){
         super.viewDidLoad()
+        UserDefaults.standard.setValue("00", forKey: "spotify_id")
         firstLoad = true
         setupButtons()
         let loginButton = LoginButton(readPermissions: [.publicProfile])
@@ -40,7 +41,6 @@ class ViewController: UIViewController, SPTAudioStreamingDelegate {
         if auth?.session == nil {
             return
         }
-        print(auth!.session.isValid())
         if auth!.session.isValid() && self.firstLoad {
             spotifyValidated = true
             spotifyLoginButton.isEnabled = false
@@ -94,11 +94,13 @@ class ViewController: UIViewController, SPTAudioStreamingDelegate {
             getStartedButton.isEnabled = true
             getStartedButton.alpha = 1
             
-            let email = ""
-            let password = ""
+            let email = "test@test.com"
+            let password = "123456"
             
             
-            triggerPOSTRequestWith(reqUrl: "https://tracks-api.herokuapp.com/sessions", params: "session={email=\(email)&password=\(password)}", viewController: self)
+            let paramString = "{\"session\": {\"email\": \"\(email)\", \"password\": \"\(password)\"}}"
+            
+            triggerPOSTRequestWith(reqUrl: "https://tracks-api.herokuapp.com/sessions", params: paramString, viewController: self)
             showPlayer()
         }
     }

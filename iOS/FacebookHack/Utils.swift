@@ -11,7 +11,8 @@ import Foundation
 func triggerGETRequestWith(reqUrl: String, authToken: String, viewController: UIViewController){
     var request = URLRequest(url: URL(string: reqUrl)!)
     request.httpMethod = "GET"
-    request.setValue("\(authToken)", forHTTPHeaderField: "Authorization")
+    print("Sending \(authToken)")
+    request.setValue(authToken, forHTTPHeaderField: "Authorization")
     
 
     let session = URLSession.shared
@@ -38,9 +39,9 @@ func triggerGETRequestWith(reqUrl: String, authToken: String, viewController: UI
             return
         }
         
-        let responseString = String(data: data, encoding: .utf8)
+       // let responseString = String(data: data, encoding: .utf8)
             //.replacingOccurrences(of: "\\", with: "", options: .literal, range: nil)
-        print(responseString!)
+        extractSong(responseData: data)
         
 //        if responseString == "true"{
 //            print("Loading main screen")
@@ -53,6 +54,8 @@ func triggerGETRequestWith(reqUrl: String, authToken: String, viewController: UI
 func triggerPOSTRequestWith(reqUrl: String, params: String, viewController: UIViewController){
     var request = URLRequest(url: URL(string: reqUrl)!)
     request.httpMethod = "POST"
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
     
     request.httpBody = params.data(using: .utf8)
     let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -79,14 +82,12 @@ func triggerPOSTRequestWith(reqUrl: String, params: String, viewController: UIVi
         }
         
         let responseString = String(data: data, encoding: .utf8)?.replacingOccurrences(of: "\\", with: "", options: .literal, range: nil)
-        print("response (good response) = \(responseString!)")
+//        print("response (good response) = \(responseString!)")
         
         // We know we have a successful login at this point so can extract the auth token
-        extractAndStoreAuthTokenAndUserIdFrom(responseData: data)
+        extractAndStoreAuthToken(responseData: data)
     
-        
-        print("Loading main screen")
-        NotificationCenter.default.post(name:Notification.Name(rawValue:"successfulLogin"), object: nil, userInfo: ["response":responseString!])
+        NotificationCenter.default.post(name: NSNotification.Name.init("successfulLogin"), object: nil)
     }
     task.resume()
 }
@@ -112,8 +113,16 @@ func dataToJSON(data: Data) -> Any? {
     return nil
 }
 
-func extractAndStoreAuthTokenAndUserIdFrom(responseData: Data){
+func extractAndStoreAuthToken(responseData: Data){
     let responseArr: [String : Any] = dataToJSON(data: responseData) as! [String : Any]
-    print("Auth Token: \(responseArr["token"]!)")
-    UserDefaults.standard.set(responseArr["token"]!, forKey: "authToken")
+    print("Auth Token: \(responseArr["auth_token"]!)")
+    UserDefaults.standard.set(responseArr["auth_token"]!, forKey: "authToken")
+}
+
+func extractSong(responseData: Data){
+    let responseArr: [String : Any] = dataToJSON(data: responseData) as! [String : Any]
+    if responseArr["spotify_id"] as! String != UserDefaults.standard.string(forKey: "spotify_id")! {
+        UserDefaults.standard.set(responseArr["spotify_id"]!, forKey: "spotify_id")
+        NotificationCenter.default.post(name: NSNotification.Name.init("successfulNewSong"), object: nil)
+    }
 }

@@ -28,8 +28,12 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     @IBOutlet weak var userLocationText: UILabel!
     @IBOutlet weak var refreshTimePicker: UIPickerView!
     
+    var canGetData = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.loginSuccess), name: NSNotification.Name(rawValue: "successfulLogin"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.changeSong), name: NSNotification.Name(rawValue: "successfulNewSong"), object: nil)
         self.handleNewSession()
         albumArtworkView.layer.shadowColor = UIColor.black.cgColor
         albumArtworkView.layer.shadowOffset = CGSize(width: 3, height: 3)
@@ -43,8 +47,11 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     }
     
     
+    func loginSuccess(){
+        canGetData = true
+    }
     
-    //MARK: SPOTIFY SESSION
+    //MARK: - SPOTIFY SESSION
     func handleNewSession() {
         do {
             try SPTAudioStreamingController.sharedInstance().start(withClientId: SPTAuth.defaultInstance().clientID, audioController: nil, allowCaching: true)
@@ -57,6 +64,7 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
             self.closeSession()
         }
     }
+    
     
     func closeSession() {
         do {
@@ -152,7 +160,6 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
                     do {
                         let imageData = try Data(contentsOf: imageURL!, options: [])
                         let image = UIImage(data: imageData)
-                        // …and back to the main queue to display the image.
                         DispatchQueue.main.async {
                             self.albumArtworkView.image = image
                             if image == nil {
@@ -170,7 +177,7 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     }
     
     
-    //MARK: BUTTON INTERFACES
+    //MARK: - BUTTON INTERFACES
     @IBAction func playPauseTouched(_ sender: Any) {
         SPTAudioStreamingController.sharedInstance().setIsPlaying(!SPTAudioStreamingController.sharedInstance().playbackState.isPlaying, callback: nil)
     }
@@ -180,7 +187,7 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
         refreshTimePicker.becomeFirstResponder()
     }
     
-    //MARK: LOCATION
+    //MARK: - LOCATION
     func getUsersLocation(){
         locationManager.requestAlwaysAuthorization()
         if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways {
@@ -223,33 +230,24 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
         return pickerDataWords[row]
     }
     
-    //MARK: Change song
+    
+    
+    //MARK: - Change song
     func checkSongForLocation(){
-        
-        let authTok = UserDefaults.standard.string(forKey: "authToken")
-        triggerGETRequestWith(reqUrl: "https://tracks-api.herokuapp.com/get+song?location=[\(userLong),\(userLat)]", authToken: authTok!, viewController: self)
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        //playSong(withURI: "spotify:track:4xX7OsX8XTGWJgRxNNIaFT")
+        if let authTok = UserDefaults.standard.string(forKey: "authToken") {
+            if canGetData {
+                triggerGETRequestWith(reqUrl: "https://tracks-api.herokuapp.com/get_song?location=[\(userLat),\(userLong)]", authToken: authTok, viewController: self)
+            }
+        }
     }
     
-    //MARK: Gesture Recogniser 
+    func changeSong(){
+        let songID = UserDefaults.standard.value(forKey: "spotify_id") as! String
+        playSong(withURI: "spotify:track:\(songID)")
+    }
+    
+    
+    //MARK: - Gesture Recogniser
     
     @IBAction func userDidTapView(_ sender: Any) {
         refreshTimePicker.isHidden = true
