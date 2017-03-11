@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170311144647) do
+ActiveRecord::Schema.define(version: 20170311141220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,17 +20,16 @@ ActiveRecord::Schema.define(version: 20170311144647) do
     t.point    "top_right"
     t.point    "bottom_right"
     t.point    "bottom_left"
+    t.integer  "song_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.index ["song_id"], name: "index_places_on_song_id", using: :btree
   end
 
   create_table "songs", force: :cascade do |t|
     t.integer  "spotify_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "place_id"
-    t.index ["place_id"], name: "index_songs_on_place_id", using: :btree
   end
 
-  add_foreign_key "songs", "places"
 end
