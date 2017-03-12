@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d993290-251a-4344-9ac9-787b05ad4a41" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web-client/images/fb.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web-client/images/spotify.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web-client/login.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web-client/map.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Spotify-50.png" afterPath="$PROJECT_DIR$/web-client/images/Spotify-50.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/logo.png" afterPath="$PROJECT_DIR$/web-client/images/logo.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/square-facebook.png" afterPath="$PROJECT_DIR$/web-client/images/square-facebook.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/style.css" afterPath="$PROJECT_DIR$/web-client/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/track-api/.idea/workspace.xml" afterPath="$PROJECT_DIR$/track-api/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/track-api/Gemfile" afterPath="$PROJECT_DIR$/track-api/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/track-api/Gemfile.lock" afterPath="$PROJECT_DIR$/track-api/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/track-api/app/controllers/songs_controller.rb" afterPath="$PROJECT_DIR$/track-api/app/controllers/songs_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/track-api/config/application.rb" afterPath="$PROJECT_DIR$/track-api/config/application.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/track-api/db/migrate/20170311141220_create_songs.rb" afterPath="$PROJECT_DIR$/track-api/db/migrate/20170311141220_create_songs.rb" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -47,8 +34,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="68" column="51" lean-forward="false" selection-start-line="68" selection-start-column="51" selection-end-line="68" selection-end-column="51" />
+            <state relative-caret-position="248">
+              <caret line="69" column="9" lean-forward="true" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -261,12 +248,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1489274478397</updated>
-      <workItem from="1489274481454" duration="6248000" />
+      <workItem from="1489274481454" duration="6493000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6248000" />
+    <option name="totallyTimeSpent" value="6493000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="774" extended-state="6" />
@@ -332,8 +319,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="68" column="51" lean-forward="false" selection-start-line="68" selection-start-column="51" selection-end-line="68" selection-end-column="51" />
+        <state relative-caret-position="248">
+          <caret line="69" column="9" lean-forward="true" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
           <folding />
         </state>
       </provider>
