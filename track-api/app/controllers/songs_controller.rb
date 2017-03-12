@@ -9,8 +9,6 @@ class SongsController < ApplicationController
 
   def create
     @new_song = current_user.songs.build(song_params)
-    puts @new_song.spotify_id
-    puts @song.spotify_id
     if @song && same_song(@new_song, @song)
       puts "Add new location"
       add_new_location_to_song(@song)
@@ -68,15 +66,15 @@ class SongsController < ApplicationController
   def add_new_song(song)
     if song.save
       place = song.places.build(place_params)
-      add_location(place)
+      add_location(song, place)
     else
       render json: @new_song.errors , status: 422
     end
   end
 
-  def add_location(place)
+  def add_location(song, place)
     if place.save
-      render json: { "song": @song, "place": place, except: [:song_id] }, status: 201
+      render json: { "song": song, "place": place }, status: 201
     else
       render json: place.errors , status: 422
     end

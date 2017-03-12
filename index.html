@@ -1,48 +1,100 @@
-<!DOCTYPE html>
 <html>
 <head>
-<title>Tracks</title>
-     <meta charset="UTF-8">
-     <title>Tracks</title>
-  <meta name="everyone" content="Project stuff">
-     <link href="style.css" rel="stylesheet" type="text/css" />
+    <title>Tracks - Login</title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="web-client/login.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-<!-- container -->
- <div id="container">
- <!--  header -->
- <div id="header">
-  <div id="logo"><a href="index.html"><img src="logo.png" alt="Logo" style="width:100px;height:40px;"></a></div>
-  <div id="top_info">New music at every corner!</div>
-  <div id="navbar">
-     <ul>
-      <div id="facebook_logo"><img src="square-facebook.png" alt="FbLogo" style="width:40px;height:40px;"></div>
-      <div id="left_link">
-        <li><a href="FbLogin.html">Login with Facebook!</a></li>
-      </div>
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '969322433241610',
+                xfbml      : true,
+                version    : 'v2.8'
+            });
+        };
 
-      <div id="right_link">
-        <li><a href="SpLogin.html">Login with Spotify!</a></li>
-      </div>
-      <div id="spotify_logo"><img src="Spotify-50.png" alt="SpLogo" style="width:40px;height:40px;"></div>
-     </ul>
-  </div>
-  </div>
-  <!-- content area -->
-  <div id="content_area">
-   <div id="banner">Banner</div>
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
 
-   <!--
-   <div id="left_col">Left Col Content</div>
-   <div id="right_col">Right Col Content</div>
- -->
+        function login() {
+            console.log("login");
+            FB.login(function(response) {
+                if (response.status === 'connected') {
+                    // Logged into your app and Facebook.
+                    console.log(response);
+                    checkLoginState();
+                } else {
+                    // The person is not logged into this app or we are unable to tell.
+                    console.log(response);
+                }
+            }, {scope: 'public_profile,email'});
+        }
 
-  </div>
-  <!-- footer -->
-<!--
-  <div id="footer">Footer</div>
--->
+        function statusChangeCallback(response) {
+            console.log('statusChangeCallback');
+            console.log(response);
+            // The response object is returned with a status field that lets the
+            // app know the current login status of the person.
+            // Full docs on the response object can be found in the documentation
+            // for FB.getLoginStatus().
+            if (response.status === 'connected') {
+                // Logged into your app and Facebook.
+                testAPI();
+            } else {
+                // The person is not logged into your app or we are unable to tell.
+                document.getElementById('status').innerHTML = 'Please log ' +
+                    'into this app.';
+            }
+        }
 
- </div><!-- end container -->
+        function testAPI() {
+            console.log('Welcome!  Fetching your information.... ');
+            FB.api('/me', function(response) {
+                console.log('Successful login for: ' + response.name);
+            });
+            window.location = "/web-client/map.html"
+        }
+
+        function checkLoginState() {
+            FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+            });
+        }
+
+    </script>
+    <div class="container-fluid">
+        <div class="row" id="login">
+            <div class="col-md-offset-3 col-md-6">
+                <img src="web-client/images/logo.png" id="logo" class="img-responsive img-rounded">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-4 col-md-5">
+                <div class="jumbotron" id="login-buttons">
+                    <h3>Create your own Music Map!</h3>
+                    <button id="spotify-button" type="button" class="btn btn-lg btn-block">
+                        Login with <img src="web-client/images/spotify.png">
+                    </button>
+                    <button onclick="login()" id="facebook-button" type="button" class="btn btn-lg btn-block">
+                        Login with Facebook
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
-</html>﻿
+</html>
