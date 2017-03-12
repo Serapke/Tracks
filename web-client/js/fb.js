@@ -54,15 +54,16 @@ function testAPI() {
         console.log(response);
         localStorage.setItem('user', JSON.stringify(response));
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://tracks-api.herokuapp.com/sessions", true);
+        xhr.open("POST", "https://tracks-api.herokuapp.com/sessions");
         xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
         //Send the proper header information along with the request
 
-        xhr.send(JSON.toJSON({ sessions: { email: ' + response.email + ', password: ' + response.id + '}}));
+        xhr.send(JSON.stringify({ sessions: { email: "hello@user.com", password: "Tester"  }}));
 
-        xhr.onloadend = function (response) {
-            console.log(response);
-        };
+        if (xhr.readyState == 4) { // `DONE`
+            data = JSON.parse(xhr.responseText);
+            console.log(data);
+        }
     });
 
 }
