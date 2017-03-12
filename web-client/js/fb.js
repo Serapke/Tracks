@@ -53,23 +53,24 @@ function testAPI() {
     FB.api('/me?fields=id,name,email', function(response) {
         console.log(response);
         localStorage.setItem('user', JSON.stringify(response));
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://tracks-api.herokuapp.com/sessions");
-        xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-        //Send the proper header information along with the request
-
-        xhr.send(JSON.stringify({ sessions: { email: "hello@user.com", password: "Tester"  }}));
-
-        if (xhr.readyState == 4) { // `DONE`
-            data = JSON.parse(xhr.responseText);
-            console.log(data);
-        }
+        loginUser(response.email, response.id);
     });
 
 }
 
-function saveUser(response) {
-    console.log(response);
+function loginUser(email, password) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://tracks-api.herokuapp.com/sessions");
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    //Send the proper header information along with the request
+
+    xhr.send(JSON.stringify({ session: { email: email, password: password }}));
+    console.log("here");
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4) {
+            console.log(this.responseText);
+        }
+    };
 }
 
 function checkLoginState() {
