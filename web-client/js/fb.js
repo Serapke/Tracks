@@ -61,13 +61,13 @@ function testAPI() {
             data: { "sessions": { email: response.email, password: response.id } },
             success: function (response) {
                 console.log(response);
+                window.location = "/Tracks/web-client/map.html"
             },
             error: function (response) {
                 console.error(response);
             }
 
         });
-        window.location = "/Tracks/web-client/map.html"
     });
 
 }
