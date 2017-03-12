@@ -18,7 +18,6 @@ window.fbAsyncInit = function() {
 }(document, 'script', 'facebook-jssdk'));
 
 function login() {
-    console.log("login");
     FB.login(function(response) {
         if (response.status === 'connected') {
             // Logged into your app and Facebook.
@@ -70,7 +69,7 @@ function loginUser(email, password) {
         if (this.readyState == 4) {
             console.log(JSON.parse(this.responseText).auth_token);
             localStorage.setItem('user', JSON.parse(this.responseText).auth_token);
-            window.location = "/web-client/map.html";
+            location.href = "/web-client/map.html";
         }
     };
 }
