@@ -81,7 +81,18 @@ function submitSong() {
      candidate = null;
      console.log(ID);
     var user = localStorage.getItem('user');
-    $.ajax({
-        url: 'https://tracks-api.herokuapp.com/songs'
-    })
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://tracks-api.herokuapp.com/songs");
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    xhr.setRequestHeader('Authorization', user);
+
+    //Send the proper header information along with the request
+
+    xhr.send(JSON.stringify({ song: { spotify_id: ID }, place: { top_left: place.top_left, top_right: place.top_right,
+        bottom_right: place.top_right, bottom_left: place.top_left }}));
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4) {
+            console.log(JSON.parse(this.responseText));
+        }
+    };
 }

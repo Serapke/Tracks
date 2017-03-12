@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6d993290-251a-4344-9ac9-787b05ad4a41" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-client/js/fb.js" afterPath="$PROJECT_DIR$/web-client/js/fb.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/track-api/.idea/workspace.xml" afterPath="$PROJECT_DIR$/track-api/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-client/js/music.js" afterPath="$PROJECT_DIR$/web-client/js/music.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,7 +25,7 @@
       <file leaf-file-name="map.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web-client/map.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
+            <state relative-caret-position="-1057">
               <caret line="14" column="4" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="92" />
               <folding>
                 <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -50,7 +51,7 @@
       <file leaf-file-name="map.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web-client/js/map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2612">
+            <state relative-caret-position="-2087">
               <caret line="13" column="26" lean-forward="false" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -59,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="music.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="music.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web-client/js/music.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="52" column="13" lean-forward="true" selection-start-line="48" selection-start-column="12" selection-end-line="52" selection-end-column="13" />
+            <state relative-caret-position="283">
+              <caret line="94" column="55" lean-forward="false" selection-start-line="94" selection-start-column="55" selection-end-line="94" selection-end-column="55" />
               <folding>
                 <element signature="e#0#43#0" expanded="false" />
               </folding>
@@ -74,18 +75,18 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
+            <state relative-caret-position="-202">
               <caret line="6" column="92" lean-forward="false" selection-start-line="6" selection-start-column="92" selection-end-line="6" selection-end-column="92" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fb.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fb.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web-client/js/fb.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="71" column="59" lean-forward="false" selection-start-line="71" selection-start-column="59" selection-end-line="71" selection-end-column="59" />
+            <state relative-caret-position="85">
+              <caret line="60" column="4" lean-forward="true" selection-start-line="60" selection-start-column="4" selection-end-line="73" selection-end-column="6" />
               <folding>
                 <element signature="e#0#43#0" expanded="false" />
               </folding>
@@ -129,8 +130,8 @@
       <find>drwaing</find>
       <find>my_array</find>
       <find>push</find>
-      <find>inf</find>
       <find>poly.setMap</find>
+      <find>inf</find>
       <find>#logo</find>
     </findStrings>
   </component>
@@ -150,9 +151,9 @@
         <option value="$PROJECT_DIR$/web-client/addSong.htm" />
         <option value="$PROJECT_DIR$/web-client/js/map.js" />
         <option value="$PROJECT_DIR$/web-client/map.html" />
-        <option value="$PROJECT_DIR$/web-client/js/music.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/web-client/js/fb.js" />
+        <option value="$PROJECT_DIR$/web-client/js/music.js" />
       </list>
     </option>
   </component>
@@ -350,12 +351,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1489274478397</updated>
-      <workItem from="1489274481454" duration="27222000" />
+      <workItem from="1489274481454" duration="27626000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27222000" />
+    <option name="totallyTimeSpent" value="27626000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="774" extended-state="6" />
@@ -426,9 +427,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web-client/login.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="51" column="14" lean-forward="false" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web-client/js/map.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2612">
+        <state relative-caret-position="-2087">
           <caret line="13" column="26" lean-forward="false" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -438,7 +447,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web-client/map.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
+        <state relative-caret-position="-1057">
           <caret line="14" column="4" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="92" />
           <folding>
             <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -462,34 +471,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
+        <state relative-caret-position="-202">
           <caret line="6" column="92" lean-forward="false" selection-start-line="6" selection-start-column="92" selection-end-line="6" selection-end-column="92" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web-client/js/music.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="52" column="13" lean-forward="true" selection-start-line="48" selection-start-column="12" selection-end-line="52" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#43#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web-client/login.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="51" column="14" lean-forward="false" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web-client/js/fb.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="71" column="59" lean-forward="false" selection-start-line="71" selection-start-column="59" selection-end-line="71" selection-end-column="59" />
+        <state relative-caret-position="85">
+          <caret line="60" column="4" lean-forward="true" selection-start-line="60" selection-start-column="4" selection-end-line="73" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#43#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web-client/js/music.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="94" column="55" lean-forward="false" selection-start-line="94" selection-start-column="55" selection-end-line="94" selection-end-column="55" />
           <folding>
             <element signature="e#0#43#0" expanded="false" />
           </folding>
