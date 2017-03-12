@@ -56,14 +56,9 @@ function testAPI() {
         $.ajax({
             type: "POST",
             url: 'https://tracks-api.herokuapp.com/sessions',
-            contentType: "application/json",
+            contentType: "application/json; charset=utf-8",
             dataType: 'json',
-            data: {
-                "session": {
-                    "email": response.email,
-                    "password": response.id
-                }
-            },
+            data: { "sessions": { email: response.email, password: response.id } },
             success: function (response) {
                 console.log(response);
             },
