@@ -10,10 +10,6 @@ var drawingManager;
 var place;
 var candidate;
 
-function loginApi(response) {
-    console.log(response);
-}
-
 function initMap() {
     var london = {lat: 51.5055, lng: 0.0754};
     map = new google.maps.Map(document.getElementById('map'), {
@@ -23,6 +19,7 @@ function initMap() {
 
     function reqListener(){
         var obj = JSON.parse(this.responseText);
+        console.log(obj);
         var i = 0;
         //console.log(obj[0].places[0]);
         while(obj[i] != null){
@@ -43,7 +40,6 @@ function initMap() {
                 {lat: -0.9008, lng: 51.117},
                 {lat: -1.5161, lng: 51.3512}
             ];
-
             var poly = new google.maps.Polygon({
                 paths: polyCoord,
                 strokeColor: '#FF0000',
@@ -67,8 +63,9 @@ function initMap() {
 
     var req = new XMLHttpRequest();
     req.addEventListener("load", reqListener);
+    var user = localStorage.getItem('user');
     req.open('GET', "https://tracks-api.herokuapp.com/songs");
-    req.setRequestHeader('Authorization', '499SRsNEUxcxSVMG_7q2');
+    req.setRequestHeader('Authorization', user);
     req.setRequestHeader('Content-Type', 'application/json');
 
     req.send(null);
@@ -152,10 +149,6 @@ function initMap() {
             //console.log(topLeft.lat);
             candidate = polygon;
 
-            // "song": {
-            //     "spotify_id" : ""
-            // },
-            //
             place = {
                 "top_left": [topLeft.lat, topLeft.lng],
                     "top_right": [topRight.lat, topRight.lng],
