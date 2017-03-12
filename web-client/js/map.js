@@ -10,6 +10,10 @@ var drawingManager;
 var place;
 var candidate;
 
+function loginApi(response) {
+    console.log(response);
+}
+
 function initMap() {
     var london = {lat: 51.5055, lng: 0.0754};
     map = new google.maps.Map(document.getElementById('map'), {
