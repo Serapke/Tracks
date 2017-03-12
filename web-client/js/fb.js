@@ -69,7 +69,7 @@ function loginUser(email, password) {
         if (this.readyState == 4) {
             console.log(JSON.parse(this.responseText).auth_token);
             localStorage.setItem('user', JSON.parse(this.responseText).auth_token);
-            location.href = "/Tracks/web-client/map.html";
+            window.location = "/Tracks/web-client/map.html";
         }
     };
 }
