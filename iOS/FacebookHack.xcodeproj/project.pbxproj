@@ -24,6 +24,7 @@
 		69ADE2C21E747EA7001F823A /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69ADE2BD1E747EA7001F823A /* FBSDKCoreKit.framework */; };
 		69ADE2C31E747EA7001F823A /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69ADE2BE1E747EA7001F823A /* FBSDKLoginKit.framework */; };
 		69ADE2C51E749089001F823A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69ADE2C41E749089001F823A /* Utils.swift */; };
+		69D4A7451E74B9DD00A1D1A2 /* Yetimology.otf in Resources */ = {isa = PBXBuildFile; fileRef = 69D4A7441E74B9DD00A1D1A2 /* Yetimology.otf */; };
 		E6A6BF8D8EE6C101AD3CD7C1 /* Pods_FacebookHack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B189EA92CA664D25D8A99626 /* Pods_FacebookHack.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		69ADE2BD1E747EA7001F823A /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../Library/Developer/Xcode/DerivedData/FacebookHack-afikzcpvcwbhemgxtvrxtmcoawae/Build/Products/Debug-iphoneos/FBSDKCoreKit/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		69ADE2BE1E747EA7001F823A /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../Library/Developer/Xcode/DerivedData/FacebookHack-afikzcpvcwbhemgxtvrxtmcoawae/Build/Products/Debug-iphoneos/FBSDKLoginKit/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		69ADE2C41E749089001F823A /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		69D4A7441E74B9DD00A1D1A2 /* Yetimology.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Yetimology.otf; path = "../../../../Downloads/chequered-ink_yetimology/Yetimology.otf"; sourceTree = "<group>"; };
 		80C15374250F03F1F5AC8A30 /* Pods-FacebookHack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FacebookHack.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FacebookHack/Pods-FacebookHack.debug.xcconfig"; sourceTree = "<group>"; };
 		B189EA92CA664D25D8A99626 /* Pods_FacebookHack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FacebookHack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7C4634389AD84BA1CCC316F /* Pods-FacebookHack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FacebookHack.release.xcconfig"; path = "Pods/Target Support Files/Pods-FacebookHack/Pods-FacebookHack.release.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 		69B924EB1E74545A00464DC4 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				69D4A7441E74B9DD00A1D1A2 /* Yetimology.otf */,
 				690F90791E74276C007872FF /* Assets.xcassets */,
 				690F907B1E74276C007872FF /* LaunchScreen.storyboard */,
 				690F907E1E74276C007872FF /* Info.plist */,
@@ -219,6 +222,7 @@
 				690F907D1E74276C007872FF /* LaunchScreen.storyboard in Resources */,
 				690F907A1E74276C007872FF /* Assets.xcassets in Resources */,
 				690F90781E74276C007872FF /* Main.storyboard in Resources */,
+				69D4A7451E74B9DD00A1D1A2 /* Yetimology.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

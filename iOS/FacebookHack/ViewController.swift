@@ -18,15 +18,15 @@ class ViewController: UIViewController, SPTAudioStreamingDelegate {
     @IBOutlet weak var spotifyLoginButton: UIButton!
     @IBOutlet weak var getStartedButton: UIButton!
     
+    //MARK: - Override Methods
     override func viewDidLoad(){
         super.viewDidLoad()
         UserDefaults.standard.setValue("00", forKey: "spotify_id")
         firstLoad = true
         setupButtons()
-        let loginButton = LoginButton(readPermissions: [.publicProfile])
+        let loginButton = LoginButton(readPermissions: [.publicProfile, .email])
         loginButton.center = view.center
         view.addSubview(loginButton)
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -35,6 +35,11 @@ class ViewController: UIViewController, SPTAudioStreamingDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.facebookSessionUpdatedNotification), name: NSNotification.Name(rawValue: "facebookSessionUpdated"), object: nil)
         let auth = SPTAuth.defaultInstance()
         if (FBSDKAccessToken.current() != nil) {
+//            let _ = FBSDKGraphRequest(graphPath: "me", parameters: nil).start(completionHandler: { (connection, result, error) in
+//                if error == nil {
+//                    print(result)
+//                }
+//            })
             facebookValidated = true
             checkIfBothValid()
         }
@@ -55,6 +60,7 @@ class ViewController: UIViewController, SPTAudioStreamingDelegate {
         
     }
     
+    //MARK: - View Update
     func setupButtons(){
         getStartedButton.isEnabled = false
         getStartedButton.alpha = 0.5
@@ -70,44 +76,17 @@ class ViewController: UIViewController, SPTAudioStreamingDelegate {
         spotifyLoginButton.layer.cornerRadius = 6
 
     }
-    
-    func spotifySessionUpdatedNotification(_ notification: Notification) {
-        let auth = SPTAuth.defaultInstance()
-        if auth!.session != nil && auth!.session.isValid() {
-            spotifyValidated = true
-            spotifyLoginButton.isEnabled = false
-            checkIfBothValid()
-        } else {
-            print("*** Failed to log in")
-        }
-    }
-    
-    func facebookSessionUpdatedNotification(_ notification: Notification) {
-        if FBSDKAccessToken.current() != nil {
-            facebookValidated = true
-            checkIfBothValid()
-        }
-    }
-    
-    func checkIfBothValid(){
-        if facebookValidated && spotifyValidated {
-            getStartedButton.isEnabled = true
-            getStartedButton.alpha = 1
-            
-            let email = "test@test.com"
-            let password = "123456"
-            
-            
-            let paramString = "{\"session\": {\"email\": \"\(email)\", \"password\": \"\(password)\"}}"
-            
-            triggerPOSTRequestWith(reqUrl: "https://tracks-api.herokuapp.com/sessions", params: paramString, viewController: self)
-            showPlayer()
-        }
-    }
-    
+
     func showPlayer() {
         self.firstLoad = false
-        performSegue(withIdentifier: "showPlayerView", sender: self)
+        let transition: CATransition = CATransition()
+        transition.duration = 1
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionFade
+        self.navigationController!.view.layer.add(transition, forKey: nil)
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "playerView") as! PlayerViewController
+        self.navigationController?.pushViewController(vc, animated: false)
     }
     
     func renewTokenAndShowPlayer() {
@@ -124,6 +103,47 @@ class ViewController: UIViewController, SPTAudioStreamingDelegate {
         }
     }
     
+    //MARK: Session update from authentication
+    func spotifySessionUpdatedNotification(_ notification: Notification) {
+        let auth = SPTAuth.defaultInstance()
+        if auth!.session != nil && auth!.session.isValid() {
+            spotifyValidated = true
+            spotifyLoginButton.isEnabled = false
+            checkIfBothValid()
+        } else {
+            print("*** Failed to log in")
+        }
+    }
+    
+    func facebookSessionUpdatedNotification(_ notification: Notification) {
+        facebookValidated = true
+        checkIfBothValid()
+        let _ = FBSDKGraphRequest(graphPath: "me", parameters: nil).start(completionHandler: { (connection, result, error) in
+            if error == nil {
+                print(result)
+            } else {
+                print("Error")
+            }
+        })
+    }
+    
+    func checkIfBothValid(){
+        if facebookValidated && spotifyValidated {
+            getStartedButton.isEnabled = true
+            getStartedButton.alpha = 1
+            
+//            let email = "test@test.com"
+//            let password = "123456"
+//            
+//            
+//            let paramString = "{\"session\": {\"email\": \"\(email)\", \"password\": \"\(password)\"}}"
+//            
+//            triggerPOSTRequestWith(reqUrl: "https://tracks-api.herokuapp.com/sessions", params: paramString, viewController: self)
+            showPlayer()
+        }
+    }
+    
+    //MARK: - Button Methods
     @IBAction func loginWithSpotifyTapped(_ sender: Any) {
         let URLAuth = SPTAuth.defaultInstance().spotifyWebAuthenticationURL()
         UIApplication.shared.open(URLAuth!, options: [:], completionHandler: nil)
