@@ -4,50 +4,82 @@
 <title>Tracks</title>
     <meta charset="UTF-8">
     <title>Tracks</title>
-    <meta name="everyone" content="Project stuff">
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="map.css" rel="stylesheet" type="text/css" />
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <script src="js/map.js"></script>
 </head>
 <body>
- <div id="container">
-     <div class="row" id="header">
-        <div class="col-md-3" id="logo">
-            <a href="map.html">
-                <img src="images/logo.png" alt="Logo">
-            </a>
+ <div id="container-fluid">
+     <div class="row navigation no-gutters">
+        <div class="col-md-4">
+            <div class="navigation-button-container">
+                <div class="navigation-button">
+                    My MusicMap
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="navigation-button-container">
+                <div class="navigation-button">
+                    Friends
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="navigation-button-container">
+                <div class="navigation-button">
+                    Something
+                </div>
+            </div>
         </div>
      </div>
+     <div class="row no-gutters">
+        <div class="col-md-3">
 
-
-
-     <div id="header1">
-         <div id="log1o">
-
-         </div>
-         <div id="top_info">New music at every corner!</div>
-        <div id="navbar">
-            <ul>
-                <div id="facebook_logo"><img src="square-facebook.png" alt="FbLogo" style="width:40px;height:40px;"></div>
-                <div id="left_link">
-                    <li><a href="FbLogin.html">Login with Facebook!</a></li>
-                </div>
-
-                <div id="right_link">
-                <li><a href="SpLogin.html">Login with Spotify!</a></li>
-                </div>
-                <div id="spotify_logo"><img src="Spotify-50.png" alt="SpLogo" style="width:40px;height:40px;"></div>
-            </ul>
         </div>
-    </div>
-   <div id="banner">Banner</div>
+        <div class="col-md-8">
+            <div id="map" style="height: 600px"></div>
+        </div>
+         <div class="col-md-1">
+            <div class="row no-gutters" style="cursor: pointer" onclick="changeMode('point')">
+                <div class="col-md-12" style="text-align: center; padding: 20px 10px; border-bottom: 3px solid #f5f5f5">
+                    <img src="images/pointer.png">
+                </div>
+            </div>
+            <div class="row no-gutters" style="cursor: pointer" onclick="changeMode('polygon')">
+                <div class="col-md-12" style="text-align: center; padding: 20px 10px; border-bottom: 3px solid #f5f5f5">
+                    <img src="images/polygon-selection.png">
+                </div>
+            </div>
+             <div class="row no-gutters">
+                 <div class="col-md-12" style="text-align: center; padding: 20px 10px; border-bottom: 3px solid #f5f5f5">
+                     <img src="images/play.png">
+                 </div>
+             </div>
+             <div class="row no-gutters">
+                 <div class="col-md-12" style="text-align: center; padding: 20px 10px; border-bottom: 3px solid #f5f5f5">
+                     <img src="images/pause.png">
+                 </div>
+             </div>
+             <div class="row no-gutters">
+                 <div class="col-md-12" style="text-align: center; margin-top: 143px; padding: 20px 10px; border-bottom: 3px solid #f5f5f5; border-top: 3px solid #f5f5f5">
+                     <img src="images/save.png">
+                 </div>
+             </div>
+         </div>
+     </div>
  </div>
+
+ <script async defer
+         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAY6LEd6ONTz-f4Gvv6KfiZcgnQg6TH8CQ&libraries=drawing&callback=initMap">
+ </script>
 </body>
 </html>﻿

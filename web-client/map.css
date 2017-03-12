@@ -1,0 +1,23 @@
+.navigation {
+
+}
+.navigation-button-container {
+  padding-top: 30px;
+  background: #cb3a3a;
+  transition: 1s all;
+}
+.navigation-button-container:hover {
+  padding-top: 45px;
+}
+.navigation-button {
+  background: #ff5656;
+  padding: 30px;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  transition: 1s all;
+  text-align: center;
+}
+.navigation-button:hover {
+  padding-top: 15px;
+}
