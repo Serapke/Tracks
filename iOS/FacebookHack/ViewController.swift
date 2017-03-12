@@ -16,6 +16,7 @@ class ViewController: UIViewController, SPTAudioStreamingDelegate {
     var facebookValidated = false
     
     @IBOutlet weak var spotifyLoginButton: UIButton!
+    @IBOutlet weak var facebookLoginButton: UIButton!
     @IBOutlet weak var getStartedButton: UIButton!
     
     //MARK: - Override Methods
@@ -24,9 +25,10 @@ class ViewController: UIViewController, SPTAudioStreamingDelegate {
         UserDefaults.standard.setValue("00", forKey: "spotify_id")
         firstLoad = true
         setupButtons()
-        let loginButton = LoginButton(readPermissions: [.publicProfile, .email])
-        loginButton.center = view.center
-        view.addSubview(loginButton)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent 
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -74,6 +76,11 @@ class ViewController: UIViewController, SPTAudioStreamingDelegate {
         spotifyLoginButton.layer.shadowOpacity = 0.6
         spotifyLoginButton.layer.shadowRadius = 4.0
         spotifyLoginButton.layer.cornerRadius = 6
+        facebookLoginButton.layer.shadowColor = UIColor.black.cgColor
+        facebookLoginButton.layer.shadowOffset = CGSize(width: 3, height: 3)
+        facebookLoginButton.layer.shadowOpacity = 0.6
+        facebookLoginButton.layer.shadowRadius = 4.0
+        facebookLoginButton.layer.cornerRadius = 6
 
     }
 
@@ -105,6 +112,7 @@ class ViewController: UIViewController, SPTAudioStreamingDelegate {
     
     //MARK: Session update from authentication
     func spotifySessionUpdatedNotification(_ notification: Notification) {
+        spotifyLoginButton.backgroundColor = UIColor.gray
         let auth = SPTAuth.defaultInstance()
         if auth!.session != nil && auth!.session.isValid() {
             spotifyValidated = true
@@ -117,10 +125,11 @@ class ViewController: UIViewController, SPTAudioStreamingDelegate {
     
     func facebookSessionUpdatedNotification(_ notification: Notification) {
         facebookValidated = true
+        facebookLoginButton.backgroundColor = UIColor.gray
         checkIfBothValid()
         let _ = FBSDKGraphRequest(graphPath: "me", parameters: nil).start(completionHandler: { (connection, result, error) in
             if error == nil {
-                print(result)
+                print(result!)
             } else {
                 print("Error")
             }
@@ -148,6 +157,19 @@ class ViewController: UIViewController, SPTAudioStreamingDelegate {
         let URLAuth = SPTAuth.defaultInstance().spotifyWebAuthenticationURL()
         UIApplication.shared.open(URLAuth!, options: [:], completionHandler: nil)
         
+    }
+    @IBAction func loginWithFacebookTapped(_ sender: Any) {
+        let loginManager = LoginManager()
+        loginManager.logIn([.publicProfile], viewController: self) { loginResult in
+            switch loginResult {
+            case .failed(let error):
+                print(error)
+            case .cancelled:
+                print("User cancelled login.")
+            case .success(_, _, _):
+                print("Logged in!")
+            }
+        }
     }
     
     @IBAction func getStartedButtonTapped(_ sender: Any) {

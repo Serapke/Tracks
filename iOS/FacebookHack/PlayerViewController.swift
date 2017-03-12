@@ -23,6 +23,7 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     var timeDelay = 5
     
     @IBOutlet weak var albumArtworkView: UIImageView!
+    @IBOutlet weak var largeArtworkView: UIImageView!
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var trackNameText: UILabel!
     @IBOutlet weak var albumArtistText: UILabel!
@@ -120,7 +121,7 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     
     func audioStreamingDidLogin(_ audioStreaming: SPTAudioStreamingController) {
         updateUserInterface()
-        playSong(withURI: "spotify:track:67lnQ6r4oWKZcM8VxSwHq2")
+        playSong(withURI: "spotify:user:jay_lees:playlist:06EIF3a0hPaXaVlZQKl5eT")
     }
     
     func playSong(withURI: String){
@@ -175,6 +176,8 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
                         let image = UIImage(data: imageData)
                         DispatchQueue.main.async {
                             self.albumArtworkView.image = image
+                            let blurred = self.applyBlur(on: image!, withRadius: 10.0)
+                            self.largeArtworkView.image = blurred
                             if image == nil {
                                 print("Couldn't load cover image with error: \(error)")
                                 return
@@ -189,6 +192,19 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
 
     }
     
+    
+    //MARK: - Image Blurring
+    func applyBlur(on imageToBlur: UIImage, withRadius blurRadius: CGFloat) -> UIImage {
+        let originalImage = CIImage(cgImage: imageToBlur.cgImage!)
+        let filter = CIFilter(name: "CIGaussianBlur")
+        filter?.setValue(originalImage, forKey: "inputImage")
+        filter?.setValue(blurRadius, forKey: "inputRadius")
+        let outputImage = filter?.outputImage
+        let context = CIContext(options: nil)
+        let outImage = context.createCGImage(outputImage!, from: outputImage!.extent)
+        let ret = UIImage(cgImage: outImage!)
+        return ret
+    }
     
     //MARK: - Button Methods
     @IBAction func playPauseTouched(_ sender: Any) {
@@ -226,7 +242,13 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
             geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks in
                 let array = placemarks.0
                 if let placemark = array?[0] {
-                    self.userLocationText.text = "Your location: \(placemark.subLocality!), \(placemark.subAdministrativeArea!)"
+                    if placemark.subLocality != nil {
+                        if placemark.administrativeArea != nil {
+                            self.userLocationText.text = "Your location: \(placemark.subLocality!), \(placemark.subAdministrativeArea!)"
+                        } else {
+                            self.userLocationText.text = "Your location: \(placemark.subLocality!)"
+                        }
+                    }
                 }
             })
         } else if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.denied {
