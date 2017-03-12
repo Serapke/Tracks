@@ -51,8 +51,8 @@ function statusChangeCallback(response) {
 function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
-        console.log('Successful login for: ' + response);
-        loginApi(response);
+        console.log(response);
+        localStorage.setItem('user', JSON.stringify(response));
     });
     window.location = "/Tracks/web-client/map.html"
 }
