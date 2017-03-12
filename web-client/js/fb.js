@@ -68,7 +68,7 @@ function loginUser(email, password) {
     console.log("here");
     xhr.onreadystatechange = function() {
         if (this.readyState == 4) {
-            console.log(this.responseText.auth_token);
+            console.log(JSON.parse(this.responseText).auth_token);
         }
     };
 }
