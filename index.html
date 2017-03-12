@@ -41,7 +41,7 @@
                     // The person is not logged into this app or we are unable to tell.
                     console.log(response);
                 }
-            }, {scope: 'public_profile,email'});
+            }, {scope: 'public_profile,email,user_friends'});
         }
 
         function statusChangeCallback(response) {

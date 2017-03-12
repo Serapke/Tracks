@@ -10,6 +10,7 @@ import UIKit
 import AudioToolbox
 import AVFoundation
 import CoreLocation
+import FacebookLogin
 
 class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudioStreamingPlaybackDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIGestureRecognizerDelegate {
 
@@ -65,7 +66,7 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     }
     
     func loginSuccess(){
-        canGetData = true
+        //canGetData = true
     }
     
     //MARK: - SPOTIFY SESSION
@@ -119,11 +120,12 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController, didReceiveError error: Error?) {
         print("Recieved error: \(error!.localizedDescription)")
+        displayAlertViewWith(title: "Error!", message: "There was an error whilst trying to process your request: \(error!.localizedDescription)", viewController: self)
     }
     
     func audioStreamingDidLogin(_ audioStreaming: SPTAudioStreamingController) {
         updateUserInterface()
-        playSong(withURI: "spotify:user:jay_lees:playlist:06EIF3a0hPaXaVlZQKl5eT")
+        playSong(withURI: "spotify:user:123886111:playlist:0XiaJosVlyWaw5H2dsCQf5")
     }
     
     func playSong(withURI: String){
@@ -174,6 +176,7 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
                 }
                 DispatchQueue.global().async {
                     do {
+                        print("Updating image")
                         let imageData = try Data(contentsOf: imageURL!, options: [])
                         let image = UIImage(data: imageData)
                         DispatchQueue.main.async {
@@ -227,6 +230,19 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
             })
             UserDefaults.standard.set(timeDelay, forKey: "timeDelay")
         }
+    }
+    @IBAction func logOutTapped(_ sender: Any) {
+        let loginManager = LoginManager()
+        loginManager.logOut()
+        if (SPTAudioStreamingController.sharedInstance() != nil){
+            SPTAudioStreamingController.sharedInstance().logout()
+        }
+        
+        
+        let firstVC = navigationController?.viewControllers[0] as! ViewController
+        firstVC.facebookValidated = false
+        firstVC.spotifyValidated = false
+        let _ = self.navigationController?.popToRootViewController(animated: true)
     }
     
     //MARK: - Location Methods
