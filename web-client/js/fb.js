@@ -53,20 +53,16 @@ function testAPI() {
     FB.api('/me?fields=id,name,email', function(response) {
         console.log(response);
         localStorage.setItem('user', JSON.stringify(response));
-        $.ajax({
-            type: "POST",
-            url: 'https://tracks-api.herokuapp.com/sessions',
-            dataType: 'json',
-            data: { sessions: { email: response.email, password: response.id gi}},
-            success: function (response) {
-                console.log(response);
-                window.location = "/Tracks/web-client/map.html"
-            },
-            error: function (response) {
-                console.error(response);
-            }
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://tracks-api.herokuapp.com/sessions", true);
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+        //Send the proper header information along with the request
 
-        });
+        xhr.send(JSON.stringify('{ "sessions": { "email": "' + response.email + '", "password": "' + response.id + '" }}'));
+
+        xhr.onloadend = function (response) {
+            console.log(response);
+        };
     });
 
 }
