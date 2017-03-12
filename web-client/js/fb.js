@@ -57,7 +57,7 @@ function testAPI() {
             type: "POST",
             url: 'https://tracks-api.herokuapp.com/sessions',
             dataType: 'json',
-            data: JSON.parse('{ "sessions": { "email": "' + response.email + '", "password": "' + response.id + '"} }'),
+            data: { sessions: { email: response.email, password: response.id gi}},
             success: function (response) {
                 console.log(response);
                 window.location = "/Tracks/web-client/map.html"
