@@ -64,7 +64,12 @@ function testAPI() {
                     "password": response.id
                 }
             },
-            complete: saveUser()
+            success: function (response) {
+                console.log(response);
+            },
+            error: function (response) {
+                console.error(response);
+            }
 
         });
         window.location = "/Tracks/web-client/map.html"
