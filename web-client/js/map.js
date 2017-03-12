@@ -72,8 +72,6 @@ function initMap() {
 
     //map.data.loadGeoJson('http://geojson.io/#data=data:application/json,{"type":"LineString","coordinates":[[0,0],[10,10]]}&id=gist:anonymous/a02bf5787ac29f44afbe82fec615ade7&map=14/51.5239/-0.1086');
 
-    var infoWindow = new google.maps.InfoWindow({map: map});
-
     var triangleCoords = [
         {lat: 25.774, lng: -80.190},
         {lat: 18.466, lng: -66.118},
