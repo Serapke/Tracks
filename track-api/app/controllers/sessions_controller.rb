@@ -10,6 +10,12 @@ class SessionsController < ApplicationController
       sign_in_and_generate_token
       @user.save
       render json: @user, status: 200
+    elsif !@user && user_email.present? then
+      @user = User.create(
+          email: user_email,
+          password: user_password,
+      )
+      render json: @user, status: 201
     else
       render json: { errors: "Incorrect credentials" }, status: 422
     end
