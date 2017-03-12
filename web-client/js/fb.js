@@ -50,11 +50,27 @@ function statusChangeCallback(response) {
 
 function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
+    FB.api('/me?fields=id,name,email', function(response) {
         console.log(response);
         localStorage.setItem('user', JSON.stringify(response));
+        $.ajax({
+            url: 'https://tracks-api.herokuapp.com/sessions',
+            dataType: 'json',
+            data: {
+                "session": {
+                    "email": response.email,
+                    "password": response.id
+                }
+            },
+            complete: saveUser()
+
+        })
     });
     window.location = "/Tracks/web-client/map.html"
+}
+
+function saveUser(response) {
+    console.log(response);
 }
 
 function checkLoginState() {

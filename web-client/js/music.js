@@ -80,4 +80,8 @@ function submitSong() {
      polies.push(candidate);
      candidate = null;
      console.log(ID);
+    var user = localStorage.getItem('user');
+    $.ajax({
+        url: 'https://tracks-api.herokuapp.com/songs'
+    })
 }
