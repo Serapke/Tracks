@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+    
+      <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    
+      <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+
+      <link rel="stylesheet" type="text/css" href="https://developer.spotify.com/web-api/static/css/cached.css">
+    
+  
+
+  <style type="text/css">
+    body {padding:20px;}
+#search-form, .form-control {margin-bottom:20px;}
+.cover {width:60px; height:60px; display:inline-block; background-size:cover; }
+.cover:hover {cursor:pointer; }
+.cover.playing {border:5px solid red; }
+  </style>
+
+  <title></title>
+
+
+<script type='text/javascript'>//<![CDATA[
+window.onload=function(){
+
+  var audio = new Audio();
+        // find template and compile it
+        var templateSource = document.getElementById('results-template').innerHTML,
+            template = Handlebars.compile(templateSource),
+            resultsPlaceholder = document.getElementById('results'),
+            audioObject = null;
+
+        var searchAlbums = function (query) {
+            $.ajax({
+                url: 'https://api.spotify.com/v1/search',
+                data: {
+                    q: query,
+                    type: 'track'
+                },
+                success: function (response) {
+                    resultsPlaceholder.innerHTML = template(response);
+                }
+            });
+        };
+
+        function playSong(query) {
+          $.ajax({
+            url: 'https://api.spotify.com/v1/tracks/' + query,
+            data: {
+                id: query
+            },
+            success: function (response) {
+                    var track = response.preview_url;
+                    audio.src = track;
+                    audio.play();
+            }
+        });
+    }
+
+        results.addEventListener('click', function (e) {
+              var ID = JSON.stringify(e.target.dataset.albumId);
+              ID = ID.replace(/"/g, "");
+                playSong(ID);
+        });
+
+        document.getElementById('search-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            searchAlbums(document.getElementById('query').value);
+        }, false);
+}//]]> 
+
+</script>
+
+  
+</head>
+
+<body>
+  <div class="container">
+    <h1>Search for a Track - Spotify</h1>
+    <form id="search-form">
+        <input type="text" id="query" value="Insert Song title here" class="form-control" />
+        <input type="submit" id="search" class="btn btn-primary" value="Search Spotify" />
+    </form>
+    <div id="results"></div>
+</div>
+<script id="results-template" type="text/x-handlebars-template">
+    {{#each tracks.items}}
+    <div >        
+        <br /> {{name}} <br/></div>
+    <div style="border:1px solid red; background-image:url({{album.images.2.url}})" data-album-id="{{id}}" class="cover"></div>
+    <div style="border:1px solid green; "> Artist name = {{artists.0.name}} </div>
+    <div style="border:1px solid green; "> Album name = {{album.name}} </div>
+    
+    {{/each}}
+</script>
+
+</body>
+
+</html>
+
