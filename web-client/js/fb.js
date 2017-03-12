@@ -58,7 +58,7 @@ function testAPI() {
         xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
         //Send the proper header information along with the request
 
-        xhr.send(JSON.stringify('{ "sessions": { "email": "' + response.email + '", "password": "' + response.id + '" }}'));
+        xhr.send('{ sessions: { email: ' + response.email + ', password: ' + response.id + '}}');
 
         xhr.onloadend = function (response) {
             console.log(response);
