@@ -60,7 +60,7 @@ class SongsController < ApplicationController
 
   def add_new_location_to_song(song)
     place = song.places.build(place_params)
-    add_location(place)
+    add_location(song, place)
   end
 
   def add_new_song(song)

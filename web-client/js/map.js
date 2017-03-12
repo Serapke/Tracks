@@ -22,15 +22,13 @@ function initMap() {
         console.log(obj);
         var i = 0;
         //console.log(obj[0].places[0]);
-        while(obj[0].places[i] != null){
-            var id = obj[0].places[0].id;
-            //console.log(id);
-            var topLeft = {lat: obj[0].places[i].top_left[0], lng: obj[0].places[i].top_left[1]};
-            var topRight = {lat: obj[0].places[i].top_right[0], lng: obj[0].places[i].top_right[1]};
-            var bottomLeft = {lat: obj[0].places[i].bottom_left[0], lng: obj[0].places[i].bottom_left[1]};
-            var bottomRight = {lat: obj[0].places[i].bottom_right[0], lng: obj[0].places[i].bottom_right[1]};
-            console.log(topLeft, topRight, bottomLeft, bottomRight, topLeft);
-
+        while(obj[i] != null){
+            var id = obj[i].places[0].id;
+            console.log(id);
+            var topLeft = {lat: obj[i].places[0].top_left[0], lng: obj[i].places[0].top_left[1]};
+            var topRight = {lat: obj[i].places[0].top_right[0], lng: obj[i].places[0].top_right[1]};
+            var bottomLeft = {lat: obj[i].places[0].bottom_left[0], lng: obj[i].places[0].bottom_left[1]};
+            var bottomRight = {lat: obj[i].places[0].bottom_right[0], lng: obj[i].places[0].bottom_right[1]};
 
             var polyCoord = [topLeft, topRight, bottomRight, bottomLeft, topLeft];
 
@@ -141,9 +139,9 @@ function initMap() {
                 }else if(i == 1){
                     topRight = {lat: paths.getAt(0).getAt(i).lat(), lng: paths.getAt(0).getAt(i).lng()};
                 }else if(i == 2){
-                    bottomLeft = {lat: paths.getAt(0).getAt(i).lat(), lng: paths.getAt(0).getAt(i).lng()};
-                }else{
                     bottomRight = {lat: paths.getAt(0).getAt(i).lat(), lng: paths.getAt(0).getAt(i).lng()};
+                }else{
+                    bottomLeft = {lat: paths.getAt(0).getAt(i).lat(), lng: paths.getAt(0).getAt(i).lng()};
                 }
             }
             //console.log(topLeft.lat);
