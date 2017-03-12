@@ -8,6 +8,7 @@
 
 import UIKit
 import FBSDKCoreKit
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SPTAuth.defaultInstance().requestedScopes = [SPTAuthStreamingScope]
         SPTAuth.defaultInstance().sessionUserDefaultsKey = kSessionUserDefaultsKey
         
-        return true && FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
     

@@ -35,14 +35,14 @@
 			<string>com.jaylees.facebook-auth</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb240796466391789</string>
+				<string>fb969322433241610</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>FacebookAppID</key>
-	<string>240796466391789</string>
+	<string>969322433241610</string>
 	<key>FacebookDisplayName</key>
 	<string>Tracks</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -56,6 +56,10 @@
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Tracks need your location so that we can provide the best possible experience</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Yetimology.otf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -76,10 +80,6 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Yetimology.otf</string>
 	</array>
 </dict>
 </plist>

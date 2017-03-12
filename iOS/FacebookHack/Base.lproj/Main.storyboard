@@ -147,14 +147,14 @@
                                 </connections>
                             </button>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nze-fu-OxJ">
-                                <rect key="frame" x="0.0" y="475" width="375" height="192"/>
+                                <rect key="frame" x="0.0" y="481" width="375" height="186"/>
                                 <subviews>
                                     <pickerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vsU-0Q-2Yi">
-                                        <rect key="frame" x="0.0" y="55" width="375" height="155"/>
+                                        <rect key="frame" x="0.0" y="32" width="375" height="178"/>
                                         <color key="backgroundColor" red="0.66689258813858032" green="0.65791094303131104" blue="0.69416236877441406" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="375" id="C3P-bU-KcU"/>
-                                            <constraint firstAttribute="height" constant="155" id="cLK-1p-Ies"/>
+                                            <constraint firstAttribute="height" constant="178" id="cLK-1p-Ies"/>
                                         </constraints>
                                     </pickerView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Refresh Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNf-1j-mDm">
@@ -169,8 +169,8 @@
                                 <color key="backgroundColor" red="0.66689258813858032" green="0.65791094303131104" blue="0.69416236877441406" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="vsU-0Q-2Yi" secondAttribute="trailing" id="A7i-T8-ZCM"/>
-                                    <constraint firstItem="vsU-0Q-2Yi" firstAttribute="height" secondItem="Nze-fu-OxJ" secondAttribute="height" constant="-37" id="fP1-Sm-VBx"/>
-                                    <constraint firstItem="vsU-0Q-2Yi" firstAttribute="top" secondItem="Nze-fu-OxJ" secondAttribute="top" constant="55" id="uTD-3W-rfE"/>
+                                    <constraint firstItem="vsU-0Q-2Yi" firstAttribute="height" secondItem="Nze-fu-OxJ" secondAttribute="height" constant="-8" id="fP1-Sm-VBx"/>
+                                    <constraint firstItem="vsU-0Q-2Yi" firstAttribute="top" secondItem="Nze-fu-OxJ" secondAttribute="top" constant="32" id="uTD-3W-rfE"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oZJ-Yf-ubw">
@@ -181,11 +181,19 @@
                                     <action selector="timerButtonTapped:" destination="c2u-Qg-NfN" eventType="touchUpInside" id="qfU-fG-fiK"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gnt-i8-zyi">
+                                <rect key="frame" x="16" y="30" width="28" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Quit"/>
+                                <connections>
+                                    <action selector="logOutTapped:" destination="c2u-Qg-NfN" eventType="touchUpInside" id="N9F-ts-aMQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.66985554316639762" green="0.65905269522629994" blue="0.6937326596247636" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="Nze-fu-OxJ" firstAttribute="top" secondItem="ZDH-an-GmT" secondAttribute="bottom" constant="455" id="GUV-3d-sUq"/>
+                            <constraint firstItem="Nze-fu-OxJ" firstAttribute="top" secondItem="ZDH-an-GmT" secondAttribute="bottom" constant="461" id="GUV-3d-sUq"/>
                             <constraint firstItem="Nze-fu-OxJ" firstAttribute="leading" secondItem="Jdn-G6-Cfy" secondAttribute="leadingMargin" constant="-16" id="eoe-h9-fpt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Nze-fu-OxJ" secondAttribute="trailing" constant="-16" id="ubi-OK-1ox"/>
                         </constraints>
@@ -239,6 +247,7 @@
     </scenes>
     <resources>
         <image name="Play" width="128" height="128"/>
+        <image name="Quit" width="128" height="128"/>
         <image name="Timer" width="256" height="256"/>
     </resources>
 </document>
