@@ -89,7 +89,7 @@ function submitSong() {
     //Send the proper header information along with the request
 
     xhr.send(JSON.stringify({ song: { spotify_id: ID }, place: { top_left: place.top_left, top_right: place.top_right,
-        bottom_right: place.top_right, bottom_left: place.top_left }}));
+        bottom_right: place.bottom_right, bottom_left: place.bottom_left }}));
     xhr.onreadystatechange = function() {
         if (this.readyState == 4) {
             console.log(JSON.parse(this.responseText));
