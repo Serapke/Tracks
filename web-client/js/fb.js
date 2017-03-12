@@ -64,9 +64,10 @@ function testAPI() {
             },
             complete: saveUser()
 
-        })
+        });
+        window.location = "/Tracks/web-client/map.html"
     });
-    window.location = "/Tracks/web-client/map.html"
+
 }
 
 function saveUser(response) {
