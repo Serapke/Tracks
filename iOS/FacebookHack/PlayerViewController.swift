@@ -32,11 +32,13 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     @IBOutlet weak var pickerViewToTop: NSLayoutConstraint!
     @IBOutlet weak var pickerViewSize: NSLayoutConstraint!
     @IBOutlet weak var pickerViewShadow: UIView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     var canGetData = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        spinner.startAnimating()
         NotificationCenter.default.addObserver(self, selector: #selector(self.loginSuccess), name: NSNotification.Name(rawValue: "successfulLogin"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.changeSong), name: NSNotification.Name(rawValue: "successfulNewSong"), object: nil)
         if let existingTimeDelay = UserDefaults.standard.value(forKey: "timeDelay") {
@@ -178,6 +180,7 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
                             self.albumArtworkView.image = image
                             let blurred = self.applyBlur(on: image!, withRadius: 10.0)
                             self.largeArtworkView.image = blurred
+
                             if image == nil {
                                 print("Couldn't load cover image with error: \(error)")
                                 return

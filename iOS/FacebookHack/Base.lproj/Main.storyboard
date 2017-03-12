@@ -97,6 +97,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Pg4-2y-4SP">
+                                <rect key="frame" x="179" y="219" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                             <imageView userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oGK-yo-215">
                                 <rect key="frame" x="-207" y="66" width="792" height="326"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -142,14 +146,6 @@
                                     <action selector="playPauseTouched:" destination="c2u-Qg-NfN" eventType="touchUpInside" id="EjC-8X-QKg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oZJ-Yf-ubw">
-                                <rect key="frame" x="331" y="30" width="28" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Timer"/>
-                                <connections>
-                                    <action selector="timerButtonTapped:" destination="c2u-Qg-NfN" eventType="touchUpInside" id="qfU-fG-fiK"/>
-                                </connections>
-                            </button>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nze-fu-OxJ">
                                 <rect key="frame" x="0.0" y="475" width="375" height="192"/>
                                 <subviews>
@@ -177,6 +173,14 @@
                                     <constraint firstItem="vsU-0Q-2Yi" firstAttribute="top" secondItem="Nze-fu-OxJ" secondAttribute="top" constant="55" id="uTD-3W-rfE"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oZJ-Yf-ubw">
+                                <rect key="frame" x="331" y="30" width="28" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Timer"/>
+                                <connections>
+                                    <action selector="timerButtonTapped:" destination="c2u-Qg-NfN" eventType="touchUpInside" id="qfU-fG-fiK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.66985554316639762" green="0.65905269522629994" blue="0.6937326596247636" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <gestureRecognizers/>
@@ -199,6 +203,7 @@
                         <outlet property="pickerViewToTop" destination="GUV-3d-sUq" id="kmg-5g-U2f"/>
                         <outlet property="playPauseButton" destination="Jzy-h2-600" id="dOl-DI-POC"/>
                         <outlet property="refreshTimePicker" destination="vsU-0Q-2Yi" id="LBE-Qc-nF9"/>
+                        <outlet property="spinner" destination="Pg4-2y-4SP" id="s56-PA-asY"/>
                         <outlet property="trackNameText" destination="SPS-5i-yf6" id="pRF-Od-X4J"/>
                         <outlet property="userLocationText" destination="12Q-sd-m08" id="02y-Tm-JZB"/>
                     </connections>
