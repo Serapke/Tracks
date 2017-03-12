@@ -54,7 +54,9 @@ function testAPI() {
         console.log(response);
         localStorage.setItem('user', JSON.stringify(response));
         $.ajax({
+            type: "POST",
             url: 'https://tracks-api.herokuapp.com/sessions',
+            contentType: "application/json",
             dataType: 'json',
             data: {
                 "session": {
