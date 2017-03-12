@@ -7,6 +7,8 @@ var id = 1;
 var drawingMode;
 var map;
 var drawingManager;
+var place;
+var candidate;
 
 function initMap() {
     var london = {lat: 51.5055, lng: 0.0754};
@@ -27,7 +29,6 @@ function initMap() {
             var bottomLeft = {lat: obj[i].places[0].bottom_left[0], lng: obj[i].places[0].bottom_left[1]};
             var bottomRight = {lat: obj[i].places[0].bottom_right[0], lng: obj[i].places[0].bottom_right[1]};
             var last = topLeft;
-
 
 
             var polyCoord = [topLeft, topRight, bottomRight, bottomLeft, topLeft];
@@ -54,7 +55,7 @@ function initMap() {
 
             polies.push(poly);
             //console.log(polies.length);
-            //poly.setMap(map);
+            poly.setMap(map);
             console.log("here");
             i = i + 1;
         }
@@ -114,6 +115,12 @@ function initMap() {
         google.maps.event.addListener(polygon, 'click', function(event) {
             console.log("clicked");
         });
+        if (submitted == false) {
+            if (candidate != null) {
+                candidate.setMap(null);
+            }
+        }
+
         console.log("polygon complete");
         var paths = polygon.getPaths();
         var topLeft;
@@ -141,17 +148,18 @@ function initMap() {
                 }
             }
             //console.log(topLeft.lat);
+            candidate = polygon;
 
             // "song": {
             //     "spotify_id" : ""
             // },
             //
-            // "place": {
-            //     "top_left": [topLeft.lat, topLeft.lng],
-            //         "top_right": [topRight.lat, topRight.lng],
-            //         "bottom_right": [bottomRight.lat, bottomRight.lng],
-            //         "bottom_left": [bottomLeft.lat, bottomLeft.lng]
-            // }
+            place = {
+                "top_left": [topLeft.lat, topLeft.lng],
+                    "top_right": [topRight.lat, topRight.lng],
+                    "bottom_right": [bottomRight.lat, bottomRight.lng],
+                    "bottom_left": [bottomLeft.lat, bottomLeft.lng]
+            }
         }
 
     });
