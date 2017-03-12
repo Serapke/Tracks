@@ -8,6 +8,7 @@
 
 import Foundation
 
+//MARK: - GET and POST methods
 func triggerGETRequestWith(reqUrl: String, authToken: String, viewController: UIViewController){
     var request = URLRequest(url: URL(string: reqUrl)!)
     request.httpMethod = "GET"
@@ -81,18 +82,13 @@ func triggerPOSTRequestWith(reqUrl: String, params: String, viewController: UIVi
             return
         }
         
-        let responseString = String(data: data, encoding: .utf8)?.replacingOccurrences(of: "\\", with: "", options: .literal, range: nil)
-//        print("response (good response) = \(responseString!)")
-        
-        // We know we have a successful login at this point so can extract the auth token
         extractAndStoreAuthToken(responseData: data)
-    
         NotificationCenter.default.post(name: NSNotification.Name.init("successfulLogin"), object: nil)
     }
     task.resume()
 }
 
-
+//MARK: Basic Alert View Method
 func displayAlertViewWith(title: String, message: String, viewController: UIViewController){
     DispatchQueue.main.async {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -102,7 +98,7 @@ func displayAlertViewWith(title: String, message: String, viewController: UIView
     }
 }
 
-//MARK: JSON Parser
+//MARK: - JSON Parser
 func dataToJSON(data: Data) -> Any? {
     do {
         let JSON = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
@@ -113,6 +109,7 @@ func dataToJSON(data: Data) -> Any? {
     return nil
 }
 
+//MARK: - JSON extracters
 func extractAndStoreAuthToken(responseData: Data){
     let responseArr: [String : Any] = dataToJSON(data: responseData) as! [String : Any]
     print("Auth Token: \(responseArr["auth_token"]!)")

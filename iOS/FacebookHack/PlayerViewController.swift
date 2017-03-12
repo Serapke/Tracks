@@ -20,6 +20,7 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     let audioSession = AVAudioSession.sharedInstance()
     let pickerDataWords = ["5 seconds", "10 seconds", "30 seconds", "1 minute", "5 minutes"]
     let pickerDataSeconds = [5, 10, 30, 60, 300]
+    var timeDelay = 5
     
     @IBOutlet weak var albumArtworkView: UIImageView!
     @IBOutlet weak var playPauseButton: UIButton!
@@ -27,6 +28,9 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     @IBOutlet weak var albumArtistText: UILabel!
     @IBOutlet weak var userLocationText: UILabel!
     @IBOutlet weak var refreshTimePicker: UIPickerView!
+    @IBOutlet weak var pickerViewToTop: NSLayoutConstraint!
+    @IBOutlet weak var pickerViewSize: NSLayoutConstraint!
+    @IBOutlet weak var pickerViewShadow: UIView!
     
     var canGetData = false
     
@@ -34,18 +38,28 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.loginSuccess), name: NSNotification.Name(rawValue: "successfulLogin"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.changeSong), name: NSNotification.Name(rawValue: "successfulNewSong"), object: nil)
-        self.handleNewSession()
+        if let existingTimeDelay = UserDefaults.standard.value(forKey: "timeDelay") {
+            timeDelay = existingTimeDelay as! Int
+        }
+        setupView()
+        handleNewSession()
+        getUsersLocation()
+        self.refreshTimePicker.delegate = self
+        self.refreshTimePicker.dataSource = self
+        Timer.scheduledTimer(timeInterval: Double(timeDelay), target: self, selector: #selector(self.getUsersLocation), userInfo: nil, repeats: true)
+    }
+    
+    func setupView(){
+        pickerViewShadow.layer.shadowColor = UIColor.black.cgColor
+        pickerViewShadow.layer.shadowOffset = CGSize(width: 0, height: -3)
+        pickerViewShadow.layer.shadowOpacity = 0.5
+        pickerViewShadow.layer.shadowRadius = 4.0
         albumArtworkView.layer.shadowColor = UIColor.black.cgColor
         albumArtworkView.layer.shadowOffset = CGSize(width: 3, height: 3)
         albumArtworkView.layer.shadowOpacity = 0.7
         albumArtworkView.layer.shadowRadius = 4.0
-        refreshTimePicker.isHidden = true
-        getUsersLocation()
-        self.refreshTimePicker.delegate = self
-        self.refreshTimePicker.dataSource = self
-        Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.getUsersLocation), userInfo: nil, repeats: true)
+        pickerViewToTop.constant = 746
     }
-    
     
     func loginSuccess(){
         canGetData = true
@@ -64,7 +78,6 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
             self.closeSession()
         }
     }
-    
     
     func closeSession() {
         do {
@@ -177,17 +190,27 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     }
     
     
-    //MARK: - BUTTON INTERFACES
+    //MARK: - Button Methods
     @IBAction func playPauseTouched(_ sender: Any) {
         SPTAudioStreamingController.sharedInstance().setIsPlaying(!SPTAudioStreamingController.sharedInstance().playbackState.isPlaying, callback: nil)
     }
     
     @IBAction func timerButtonTapped(_ sender: Any) {
-        refreshTimePicker.isHidden = false
-        refreshTimePicker.becomeFirstResponder()
+        if pickerViewToTop.constant == 746{
+            UIView.animate(withDuration: 0.5, animations: {
+                self.pickerViewToTop.constant = 446
+                self.view.layoutIfNeeded()
+            })
+        } else {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.pickerViewToTop.constant = 746
+                self.view.layoutIfNeeded()
+            })
+            UserDefaults.standard.set(timeDelay, forKey: "timeDelay")
+        }
     }
     
-    //MARK: - LOCATION
+    //MARK: - Location Methods
     func getUsersLocation(){
         locationManager.requestAlwaysAuthorization()
         if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways {
@@ -215,24 +238,24 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     }
     
     
-    
+    //MARK - Picker View Methods
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    // The number of rows of data
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickerDataWords.count
     }
     
-    // The data to return for the row and component (column) that's being passed in
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerDataWords[row]
     }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        timeDelay = pickerDataSeconds[row]
+    }
     
-    
-    //MARK: - Change song
+    //MARK: - Change song methods
     func checkSongForLocation(){
         if let authTok = UserDefaults.standard.string(forKey: "authToken") {
             if canGetData {
@@ -246,11 +269,13 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
         playSong(withURI: "spotify:track:\(songID)")
     }
     
-    
     //MARK: - Gesture Recogniser
-    
     @IBAction func userDidTapView(_ sender: Any) {
-        refreshTimePicker.isHidden = true
+        UIView.animate(withDuration: 0.5, animations: {
+            self.pickerViewToTop.constant = 746
+            self.view.layoutIfNeeded()
+        })
+        UserDefaults.standard.set(timeDelay, forKey: "timeDelay")
     }
     
 }
