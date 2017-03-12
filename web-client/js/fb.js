@@ -69,6 +69,8 @@ function loginUser(email, password) {
     xhr.onreadystatechange = function() {
         if (this.readyState == 4) {
             console.log(JSON.parse(this.responseText).auth_token);
+            localStorage.setItem('user', JSON.parse(this.responseText).auth_token);
+            window.location = "/web-client/map.html";
         }
     };
 }
